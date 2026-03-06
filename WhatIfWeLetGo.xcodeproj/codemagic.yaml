@@ -1,0 +1,12 @@
+workflows:
+  ios-app-build:
+    name: iOS App Build
+    instance_type: mac_mini_m2
+    environment:
+      xcode: 16.0
+    scripts:
+      - name: Build iOS app
+        script: |
+          xcode-project build-ipa --project "WhatIfWeLetGo.xcodeproj" --scheme "WhatIfWeLetGo"
+    artifacts:
+      - build/ios/ipa/*.ipa
