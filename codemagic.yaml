@@ -8,7 +8,7 @@ workflows:
       xcode: 16.0
       ios_signing:
         distribution_type: app_store
-        bundle_identifier: com.kathleenpreusse.whatifweletgo
+        bundle_identifier: com.kathleenpreusse.whatifweletgo1
     scripts:
       - name: Build iOS app
         script: |
