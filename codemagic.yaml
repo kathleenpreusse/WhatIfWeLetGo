@@ -2,11 +2,22 @@ workflows:
   ios-app-build:
     name: iOS App Build
     instance_type: mac_mini_m2
+    integrations:
+      app_store_connect: AppleKey
     environment:
       xcode: 16.0
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: "*"
     scripts:
       - name: Build iOS app
         script: |
-          xcode-project build-ipa --project "WhatIfWeLetGo.xcodeproj" --scheme "WhatIfWeLetGo"
+          xcode-project build-ipa \
+            --project "WhatIfWeLetGo.xcodeproj" \
+            --scheme "WhatIfWeLetGo"
     artifacts:
       - build/ios/ipa/*.ipa
+    publishing:
+      app_store_connect:
+        auth: integration
+        submit_to_testflight: true
