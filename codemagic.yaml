@@ -8,8 +8,8 @@ workflows:
       xcode: 16.0
       ios_signing:
         distribution_type: app_store
-        # Put your EXACT Bundle Identifier inside the quotes below
-        bundle_identifier: "com.kathleenpreusse.whatifweletgo"
+        # The hyphens were the missing key!
+        bundle_identifier: "com.kathleenpreusse.What-If-We-Let-Go"
     scripts:
       - name: Build iOS app
         script: |
