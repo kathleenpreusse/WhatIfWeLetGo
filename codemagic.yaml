@@ -8,7 +8,7 @@ workflows:
       xcode: 16.0
       ios_signing:
         distribution_type: app_store
-        bundle_identifier: "com.kathleenpreusse.What-If-We-Let-Go"
+        bundle_identifier: "com.kathleenpreusse.What-If-We-Let-GO"
     scripts:
       - name: Bypass Xcode (Inject Hyphens)
         script: |
