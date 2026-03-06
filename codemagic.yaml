@@ -9,7 +9,7 @@ workflows:
       ios_signing:
         distribution_type: app_store
         # Put your EXACT Bundle Identifier inside the quotes below
-        bundle_identifier: "com.kathleenpreusse.WhatIfWeLetGo"
+        bundle_identifier: "com.kathleenpreusse.whatifweletgo"
     scripts:
       - name: Build iOS app
         script: |
