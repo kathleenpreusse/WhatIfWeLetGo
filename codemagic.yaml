@@ -8,11 +8,8 @@ workflows:
       xcode: 16.0
       ios_signing:
         distribution_type: app_store
-        bundle_identifier: "XC com kathleenpreusse com.kathleenpreusse.What-If-We-Let-GO"
+        bundle_identifier: com.kathleenpreusse.whatifweletgo
     scripts:
-      - name: Bypass Xcode (Inject Hyphens)
-        script: |
-          sed -i '' 's/com.kathleenpreusse.WhatIfWeLetGo/com.kathleenpreusse.What-If-We-Let-Go/g' WhatIfWeLetGo.xcodeproj/project.pbxproj
       - name: Build iOS app
         script: |
           xcode-project build-ipa \
