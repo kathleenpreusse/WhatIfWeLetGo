@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		270A56B02F87E40400ED5061 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270A56AF2F87E40400ED5061 /* StoreKit.framework */; };
 		277F4D762F59F28900752DCA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277F4D752F59F28900752DCA /* AppDelegate.swift */; };
 		277F4D782F59F28900752DCA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277F4D772F59F28900752DCA /* SceneDelegate.swift */; };
 		277F4D7A2F59F28900752DCA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277F4D792F59F28900752DCA /* ViewController.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		270A56AF2F87E40400ED5061 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		277F4D722F59F28900752DCA /* WhatIfWeLetGo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatIfWeLetGo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		277F4D752F59F28900752DCA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		277F4D772F59F28900752DCA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -31,17 +33,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				270A56B02F87E40400ED5061 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		270A56AE2F87E40300ED5061 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				270A56AF2F87E40400ED5061 /* StoreKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		277F4D692F59F28900752DCA = {
 			isa = PBXGroup;
 			children = (
 				277F4D742F59F28900752DCA /* WhatIfWeLetGo */,
 				277F4D732F59F28900752DCA /* Products */,
+				270A56AE2F87E40300ED5061 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
