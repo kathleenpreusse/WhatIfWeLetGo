@@ -19,8 +19,13 @@ workflows:
           <dict>
             <key>method</key>
             <string>app-store</string>
-            <key>bundleID</key>
-            <string>com.kathleenpreusse.whatifweletgo1</string>
+            <key>signingStyle</key>
+            <string>manual</string>
+            <key>provisioningProfiles</key>
+            <dict>
+              <key>com.kathleenpreusse.whatifweletgo1</key>
+              <string>WhatIfWeLetGoProfile</string>
+            </dict>
           </dict>
           </plist>
           EOF
