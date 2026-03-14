@@ -5,13 +5,10 @@ workflows:
     integrations:
       app_store_connect: AppleKey
     environment:
-      xcode: 16.0
-      environment:
-  xcode: 16.0
-  ios_signing:
-    distribution_type: app_store
-    bundle_identifier: com.kathleenpreusse.whatifweletgo1
-    provisioning_profile: WhatIfWeLetGoProfile
+      xcode: "16.0"
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: com.kathleenpreusse.whatifweletgo1
     scripts:
       - name: Build iOS app
         script: |
