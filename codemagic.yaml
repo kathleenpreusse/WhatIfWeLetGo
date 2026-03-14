@@ -33,7 +33,10 @@ workflows:
         script: |
           xcode-project build-ipa \
             --project "WhatIfWeLetGo.xcodeproj" \
-            --scheme "WhatIfWeLetGo"
+            --scheme "WhatIfWeLetGo" \
+            --config "Release" \
+            --provisioning-profile-specifier "WhatIfWeLetGoProfile" \
+            --code-signing-identity "Apple Distribution: Kathleen Preusse"
     artifacts:
       - build/ios/ipa/*.ipa
     publishing:
