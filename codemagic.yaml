@@ -10,6 +10,25 @@ workflows:
         distribution_type: app_store
         bundle_identifier: com.kathleenpreusse.whatifweletgo1
     scripts:
+      - name: Create Export Options
+        script: |
+          cat > /Users/builder/export_options.plist << EOF
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
+          <dict>
+            <key>method</key>
+            <string>app-store</string>
+            <key>signingStyle</key>
+            <string>manual</string>
+            <key>provisioningProfiles</key>
+            <dict>
+              <key>com.kathleenpreusse.whatifweletgo1</key>
+              <string>WhatIfWeLetGoProfile</string>
+            </dict>
+          </dict>
+          </plist>
+          EOF
       - name: Build iOS app
         script: |
           xcode-project build-ipa \
