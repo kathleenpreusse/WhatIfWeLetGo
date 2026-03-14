@@ -36,23 +36,8 @@ workflows:
           sips -z 167 167 WhatIfWeLetGo/Assets.xcassets/AppIcon.appiconset/Icon1024.png --out WhatIfWeLetGo/Assets.xcassets/AppIcon.appiconset/Icon167.png
       - name: Build iOS app
         script: |
-          xcodebuild \
-            -project "WhatIfWeLetGo.xcodeproj" \
-            -scheme "WhatIfWeLetGo" \
-            -configuration Release \
-            -archivePath build/WhatIfWeLetGo.xcarchive \
-            PROVISIONING_PROFILE_SPECIFIER="WhatIfWeLetGoProfile" \
-            CODE_SIGN_IDENTITY="Apple Distribution: Kathleen Preusse" \
-            CODE_SIGN_STYLE=Manual \
-            archive
-          xcodebuild \
-            -exportArchive \
-            -archivePath build/WhatIfWeLetGo.xcarchive \
-            -exportOptionsPlist /Users/builder/export_options.plist \
-            -exportPath build/ios/ipa
+          xcodebuild -project "WhatIfWeLetGo.xcodeproj" -scheme "WhatIfWeLetGo" -configuration Release -archivePath build/WhatIfWeLetGo.xcarchive PROVISIONING_PROFILE_SPECIFIER="WhatIfWeLetGoProfile" CODE_SIGN_IDENTITY="Apple Distribution: Kathleen Preusse" CODE_SIGN_STYLE=Manual archive
+          xcodebuild -exportArchive -archivePath build/WhatIfWeLetGo.xcarchive -exportOptionsPlist /Users/builder/export_options.plist -exportPath build/ios/ipa
     artifacts:
       - build/ios/ipa/*.ipa
     publishing:
-      app_store_connect:
-        auth: integration
-        submit_to_testfl
