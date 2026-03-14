@@ -12,6 +12,18 @@ workflows:
     scripts:
       - name: Build iOS app
         script: |
+          cat > /Users/builder/export_options.plist << EOF
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
+          <dict>
+            <key>method</key>
+            <string>app-store</string>
+            <key>bundleID</key>
+            <string>com.kathleenpreusse.whatifweletgo1</string>
+          </dict>
+          </plist>
+          EOF
           xcode-project build-ipa \
             --project "WhatIfWeLetGo.xcodeproj" \
             --scheme "WhatIfWeLetGo"
