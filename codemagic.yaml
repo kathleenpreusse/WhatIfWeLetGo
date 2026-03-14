@@ -29,6 +29,11 @@ workflows:
           </dict>
           </plist>
           EOF
+      - name: Generate App Icons
+        script: |
+          sips -z 120 120 WhatIfWeLetGo/Assets.xcassets/AppIcon.appiconset/Icon1024.png --out WhatIfWeLetGo/Assets.xcassets/AppIcon.appiconset/Icon120.png
+          sips -z 152 152 WhatIfWeLetGo/Assets.xcassets/AppIcon.appiconset/Icon1024.png --out WhatIfWeLetGo/Assets.xcassets/AppIcon.appiconset/Icon152.png
+          sips -z 167 167 WhatIfWeLetGo/Assets.xcassets/AppIcon.appiconset/Icon1024.png --out WhatIfWeLetGo/Assets.xcassets/AppIcon.appiconset/Icon167.png
       - name: Build iOS app
         script: |
           xcodebuild \
@@ -50,4 +55,4 @@ workflows:
     publishing:
       app_store_connect:
         auth: integration
-        submit_to_testflight: true
+        submit_to_testfl
