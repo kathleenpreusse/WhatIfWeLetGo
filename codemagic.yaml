@@ -31,12 +31,20 @@ workflows:
           EOF
       - name: Build iOS app
         script: |
-          xcode-project build-ipa \
-            --project "WhatIfWeLetGo.xcodeproj" \
-            --scheme "WhatIfWeLetGo" \
-            --config "Release" \
-            --provisioning-profile-specifier "WhatIfWeLetGoProfile" \
-            --code-signing-identity "Apple Distribution: Kathleen Preusse"
+          xcodebuild \
+            -project "WhatIfWeLetGo.xcodeproj" \
+            -scheme "WhatIfWeLetGo" \
+            -configuration Release \
+            -archivePath build/WhatIfWeLetGo.xcarchive \
+            PROVISIONING_PROFILE_SPECIFIER="WhatIfWeLetGoProfile" \
+            CODE_SIGN_IDENTITY="Apple Distribution: Kathleen Preusse" \
+            CODE_SIGN_STYLE=Manual \
+            archive
+          xcodebuild \
+            -exportArchive \
+            -archivePath build/WhatIfWeLetGo.xcarchive \
+            -exportOptionsPlist /Users/builder/export_options.plist \
+            -exportPath build/ios/ipa
     artifacts:
       - build/ios/ipa/*.ipa
     publishing:
