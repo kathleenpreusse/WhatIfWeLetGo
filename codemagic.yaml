@@ -5,19 +5,50 @@ workflows:
     integrations:
       app_store_connect: AppleKey
     environment:
-      xcode: 16.0
-    ios_signing:
-      distribution_type: app_store
-      bundle_identifier: com.kathleenpreusse.whatifweletgo1
+      xcode: "16.3"
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: com.kathleenpreusse.whatifweletgo1
     scripts:
+      - name: Create Export Options
+        script: |
+          cat > /Users/builder/export_options.plist << EOF
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
+          <dict>
+            <key>method</key>
+            <string>app-store</string>
+            <key>signingStyle</key>
+            <string>manual</string>
+            <key>provisioningProfiles</key>
+            <dict>
+              <key>com.kathleenpreusse.whatifweletgo1</key>
+              <string>WhatIfWeLetGoProfile</string>
+            </dict>
+          </dict>
+          </plist>
+          EOF
+      - name: Generate App Icons
+        script: |
+          cd WhatIfWeLetGo/Assets.xcassets/AppIcon.appiconset
+          sips -z 120 120 Icon1024.png --out Icon120.png
+          sips -z 152 152 Icon1024.png --out Icon152.png
+          sips -z 167 167 Icon1024.png --out Icon167.png
+          sips -z 76 76 Icon1024.png --out Icon76.png
+          sips -z 40 40 Icon1024.png --out Icon40.png
+          sips -z 29 29 Icon1024.png --out Icon29.png
+          cat > Contents.json << ICONEOF
+          {"images":[{"filename":"Icon120.png","idiom":"iphone","scale":"2x","size":"60x60"},{"filename":"Icon120.png","idiom":"iphone","scale":"3x","size":"40x40"},{"filename":"Icon29.png","idiom":"iphone","scale":"1x","size":"29x29"},{"filename":"Icon40.png","idiom":"iphone","scale":"2x","size":"20x20"},{"filename":"Icon76.png","idiom":"ipad","scale":"1x","size":"76x76"},{"filename":"Icon152.png","idiom":"ipad","scale":"2x","size":"76x76"},{"filename":"Icon167.png","idiom":"ipad","scale":"2x","size":"83.5x83.5"},{"filename":"Icon40.png","idiom":"ipad","scale":"1x","size":"40x40"},{"filename":"Icon1024.png","idiom":"ios-marketing","scale":"1x","size":"1024x1024"}],"info":{"author":"xcode","version":1}}
+          ICONEOF
       - name: Build iOS app
         script: |
-          xcode-project build-ipa \
-            --project "WhatIfWeLetGo.xcodeproj" \
-            --scheme "WhatIfWeLetGo"
+          xcodebuild -project "WhatIfWeLetGo.xcodeproj" -scheme "WhatIfWeLetGo" -configuration Release -archivePath build/WhatIfWeLetGo.xcarchive PROVISIONING_PROFILE_SPECIFIER="WhatIfWeLetGoProfile" CODE_SIGN_IDENTITY="Apple Distribution: Kathleen Preusse" CODE_SIGN_STYLE=Manual archive
+          xcodebuild -exportArchive -archivePath build/WhatIfWeLetGo.xcarchive -exportOptionsPlist /Users/builder/export_options.plist -exportPath build/ios/ipa
     artifacts:
       - build/ios/ipa/*.ipa
     publishing:
       app_store_connect:
         auth: integration
         submit_to_testflight: true
+        submit_to_app_store: false
