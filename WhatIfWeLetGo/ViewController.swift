@@ -15,7 +15,9 @@ class ViewController: UIViewController, WKNavigationDelegate, WKScriptMessageHan
         SKPaymentQueue.default().add(self)
         
         // Fetch the IAP product from App Store Connect
-        fetchTipProduct()
+        DispatchQueue.global(qos: .background).async {
+            self.fetchTipProduct()
+        }
         
         // Set up web view with message handler so web app can trigger IAP
         let contentController = WKUserContentController()
