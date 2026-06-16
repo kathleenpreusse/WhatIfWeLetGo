@@ -5,7 +5,7 @@ workflows:
     integrations:
       app_store_connect: AppleKey
     environment:
-      xcode: "16.3"
+      xcode: "26.4"
       ios_signing:
         distribution_type: app_store
         bundle_identifier: com.kathleenpreusse.whatifweletgo1
